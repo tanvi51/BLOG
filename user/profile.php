@@ -46,38 +46,7 @@ if (isset($_POST["changeInfo"])) {
 
 ?>
 
-<?php
-// Change Password
 
-$password = $rePassword = $password_hash = '';
-
-if (isset($_POST["changePass"])) {
-
-  $password = $_POST["password"];
-  $rePassword = $_POST["rePassword"];
-
-  if ($password !== $rePassword) {
-    array_push($errors, "Please check password . both are not the same");
-  } else {
-    if (!empty($password) && !empty($rePassword)) {
-
-      $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-      $q = "UPDATE `users` SET `password`='$password_hash' WHERE `id`='$userid'";
-      $result = mysqli_query($connection, $q);
-
-      if ($result) {
-        array_push($success, "Password udated successfully;");
-      } else {
-        array_push($errors, "can not update profile info.");
-      }
-    } else {
-      array_push($errors, "Please fill all required fields");
-    }
-  }
-}
-
-?>
 
 
 <div class="container mt-4">
@@ -143,36 +112,6 @@ if (isset($_POST["changePass"])) {
 
         <hr class="mb-4">
         <button class="btn btn-primary btn-lg" name="changeInfo" type="submit">Submit Changes</button>
-
-      </form>
-
-    </div>
-
-    <div class="col-md-6 col-sm-12">
-
-      <div class="page-header">
-        <h4>Change Password</h4>
-        <hr>
-      </div>
-
-      <form class="needs-validation" action="<?= $_SERVER['PHP_SELF']; ?>" method="POST" novalidate>
-
-        <div class="mb-3">
-          <input type="password" class="form-control disabled" placeholder="Password" value="" name="password" required>
-          <div class="invalid-feedback">
-            Please enter a Password.
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <input type="password" class="form-control disabled" placeholder="Confirm Password" value="" name="Confirm Password" required>
-          <div class="invalid-feedback">
-            Please re enter a Password.
-          </div>
-        </div>
-
-        <hr class="mb-4">
-        <button class="btn btn-success btn-lg" name="changePass" type="submit">Change Password</button>
 
       </form>
 
