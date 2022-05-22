@@ -5,17 +5,13 @@
  
 
 
+
 Technologies used-
 
 HTML
-
 PHP
-
 Bootstrap
-
 Javascript
-
 Sql
-
 Xampp
 
